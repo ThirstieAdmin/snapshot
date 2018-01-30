@@ -17,7 +17,7 @@ DESCRIPTION = 'Friendly tool to backup and restore MySQL databases'
 URL = 'https://github.com/ThirstieAdmin/snapshot'
 AUTHOR = 'Brendan Berg'
 EMAIL = 'brendan@thirstie.com'
-VERSION = (0, 1, 1)
+VERSION = (0, 1, 2)
 
 REQUIRED = [
     # 'requests',
