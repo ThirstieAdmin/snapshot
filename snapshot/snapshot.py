@@ -58,35 +58,3 @@ def load(host, port, user, password, database):
 def update(host, port, user, password, database, infile):
     command = ['mysql', '-h', host, '-P', port, '-u', user, '-p%s' % password, database]
     subprocess.run(command, input=infile.read())
-
-
-# if __name__ == '__main__':
-#     import argparse
-# 
-#     parser = argparse.ArgumentParser(description='Save and restore MySQL databases')
-#     parser.add_argument('command', type=str, help='a command to run')
-#     parser.add_argument('--host', dest='host', type=str, help='database host')
-#     parser.add_argument('--port', dest='port', default='3306', type=str, help='database port')
-#     parser.add_argument('--database', dest='database', type=str, help='database name')
-#     parser.add_argument('--user', dest='user', type=str, help='database user')
-#     parser.add_argument('--password', dest='password', type=str, help='database password')
-# 
-#     # Arguments for backups
-#     parser.add_argument('--table-prefix', dest='prefix', default=None, type=str, help='backup tables starting with PREFIX')
-# 
-#     # Arguments for restores
-#     parser.add_argument('--updates', dest='updates', nargs='*', type=argparse.FileType('rb'), help='SQL query file to apply after restore')
-# 
-#     args = parser.parse_args()
-# 
-#     if args.command == 'backup':
-#         print('Backing up mysql://%s:%s/%s ...' % (args.host, args.port, args.database), file=sys.stderr)
-#         backup(args.host, args.port, args.database, args.user, args.password, table_prefix=args.prefix)
-#     elif args.command == 'restore':
-#         print('Restoring mysql://%s:%s/%s ...' % (args.host, args.port, args.database), file=sys.stderr)
-#         load(args.host, args.port, args.user, args.password, args.database)
-# 
-#         if args.updates:
-#             print('Running update scripts ...', file=sys.stderr)
-#             for file in args.updates:
-#                 update(args.host, args.port, args.user, args.password, args.database, file)
