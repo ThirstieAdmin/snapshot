@@ -13,6 +13,7 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
+  --version             show the version string and exit
   --host HOST           database host
   --port PORT           database port
   --database DATABASE   database name
@@ -30,7 +31,8 @@ import argparse
 import snapshot
 
 parser = argparse.ArgumentParser(description='Save and restore MySQL databases')
-parser.add_argument('command', type=str, help='a command to run')
+parser.add_argument('command', type=str, nargs='?', help='a command to run')
+parser.add_argument('--version', action='store_const', const=True, help='show the version string and exit')
 parser.add_argument('--host', dest='host', type=str, help='database host')
 parser.add_argument('--port', dest='port', default='3306', type=str, help='database port')
 parser.add_argument('--database', dest='database', type=str, help='database name')
@@ -44,6 +46,13 @@ parser.add_argument('--table-prefix', dest='prefix', default=None, type=str, hel
 parser.add_argument('--updates', dest='updates', nargs='*', type=argparse.FileType('rb'), help='SQL query file to apply after restore')
 
 args = parser.parse_args()
+
+if args.version == True:
+    print('snapshot ' + snapshot.__version__)
+    sys.exit()
+elif args.command is None:
+    parser.print_help()
+    sys.exit()
 
 if args.command == 'backup':
     print('Backing up mysql://%s:%s/%s ...' % (args.host, args.port, args.database), file=sys.stderr)

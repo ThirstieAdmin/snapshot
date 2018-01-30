@@ -17,7 +17,7 @@ DESCRIPTION = 'Friendly tool to backup and restore MySQL databases'
 URL = 'https://github.com/ThirstieAdmin/snapshot'
 AUTHOR = 'Brendan Berg'
 EMAIL = 'brendan@thirstie.com'
-VERSION = (0, 1, 0)
+VERSION = (0, 1, 1)
 
 REQUIRED = [
     # 'requests',
@@ -37,7 +37,6 @@ with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
 setup(
     name=NAME,
     version='.'.join(map(str, VERSION)),
-	#about['__version__'],
     description=DESCRIPTION,
     long_description=long_description,
     author=AUTHOR,
